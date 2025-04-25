@@ -1,13 +1,340 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+:root {
+
+  --clr-bg: #e6e8eb;    
+  --clr-text: #2d2d2d;       
+  
+  
+  --clr-primary: #007acc;     
+  --clr-secondary: #cccccc;   
+  --clr-accent: #13a10e;      
+  
+  
+  --clr-header-bg: rgba(255, 255, 255, 0.08);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --clr-bg: #1e1e1e;       
+    --clr-text: #d4d4d4;     
+    
+    --clr-primary: #007acc;  
+    --clr-secondary: #3c3c3c; 
+    --clr-accent: #0db9d7;    
+    
+    --clr-header-bg: rgba(30, 30, 30, 0.8);
+  }
+}
+
+body {
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+}
+
+.container {
+  width: 90%;
+  max-width: 1140px;
+  margin: auto;
+}
+
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: var(--clr-header-bg);
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.social-links a {
+  font-size: 1.5rem; 
+  transition: transform 0.2s ease;
+}
+
+.social-links {
+  display: flex;       
+  flex-direction: row;  
+  gap: 2rem;         
+  align-items: center; 
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--clr-text);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  height: 2px;
+  width: 0;
+  background: var(--clr-accent);
+  bottom: -4px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary), var(--clr-accent));
+  background-size: 300% 300%;
+  animation: gradientBG 12s ease infinite;
+  padding: 0 1rem;
+}
+
+@keyframes gradientBG {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.hero-content {
+  z-index: 1;
+}
+
+.hero-title {
+  font-family: 'Source Code Pro', monospace;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: white;
+  max-width: 600px;
+}
+
+.btn-primary {
+  background: white;
+  color: var(--clr-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary .arrow {
+  display: inline-block;
+  margin-left: 0.5rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+}
+
+.btn-primary:hover .arrow {
+  transform: translateX(4px);
+}
+
+.hero-decor .shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.3;
+  z-index: 0;
+}
+.shape-1 {
+  width: 200px; height: 200px;
+  background: var(--clr-primary);
+  top: -50px; left: -50px;
+}
+.shape-2 {
+  width: 300px; height: 300px;
+  background: var(--clr-secondary);
+  bottom: -80px; right: -60px;
+}
+.shape-3 {
+  width: 100px; height: 100px;
+  background: var(--clr-accent);
+  top: 40%; right: -40px;
+}
+
+.about-section {
+  padding: 6rem 1rem;
+  background: var(--clr-bg);
+}
+
+
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+  max-width: 900px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+.about-image-wrapper {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;     
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.about-image-wrapper:hover {
+  transform: scale(1.05);
+}
+
+
+
+.about-text {
+  flex: 1;
+  color: white;
+}
+
+.about-text .section-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.skills-section {
+  padding: 6rem 1rem;
+  background: var(--clr-bg);
+}
+
+.skills-section .section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: var(--clr-primary);
+  font-weight: 700;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.skill-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  padding: 0.25rem 1rem;        
+  border-radius: 12px;          
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.skill-pill:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+  font-size: 1.3rem;
+  color: #facc15;             
+}
+
+.skill-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--clr-text);
+}
+
+
+footer.footer {
+
+  background: linear-gradient(
+    135deg,
+    var(--clr-text) 0%,
+    var(--clr-primary) 50%,
+    var(--clr-secondary) 100%
+  );
+  color: var(--clr-bg);
+  padding: 2rem 1rem;
+}
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+
+.footer-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-contact a {
+  color: #f9fafb;
+  text-decoration: underline;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f9fafb;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-social a:hover {
+  color: #facc15;           
+  transform: translateY(-2px);
+}
+
+.footer-icon {
+  font-size: 1.25rem;
+}
+
+
+.footer-bottom {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.footer-bottom small {
+  font-size: 0.875rem;
+  color: #e5e7eb;
 }
